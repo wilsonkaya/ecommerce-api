@@ -24,10 +24,11 @@ const show = (req, res) => {
 }
 
 const create = (req, res, next) => {
-  const product = Object.assign(req.body.product, {
-    _owner: req.user._id
-  })
-  Product.create(product)
+  // it needs to be controlled by admin
+  // const product = Object.assign(req.body.product, {
+  //   _owner: req.user._id
+  // })
+  Product.create(req.body.product)
     .then(product =>
       res.status(201)
         .json({
@@ -57,7 +58,7 @@ module.exports = controller({
   destroy
 }, { before: [
   { method: setUser, only: ['index', 'show'] },
-  { method: authenticate, except: ['index', 'show'] },
+  { method: authenticate, except: ['index', 'show', 'create'] },
   { method: setModel(Product), only: ['show'] },
   { method: setModel(Product, { forUser: true }), only: ['update', 'destroy'] }
 ] })
