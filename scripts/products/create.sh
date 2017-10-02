@@ -9,9 +9,9 @@ curl "${API}${URL_PATH}" \
   --header "Content-Type: application/json" \
   --data '{
     "product": {
-      "text": "'"fatih"'",
+      "text": "'"esra"'",
       "name": "'"kaya"'",
-      "price": "'"5"'"
+      "price": "'"6"'"
 
     }
   }'
