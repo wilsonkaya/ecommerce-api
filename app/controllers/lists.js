@@ -9,13 +9,23 @@ const setUser = require('./concerns/set-current-user')
 const setModel = require('./concerns/set-mongoose-model')
 
 const index = (req, res, next) => {
-  List.find()
+  // console.log(req.query.ID)
+  // ({ rentals: req.query.rentals })
+  List.find({_owner: req.query.ID})
     .then(lists => res.json({
       lists: lists.map((e) =>
         e.toJSON({ virtuals: true, user: req.user }))
     }))
     .catch(next)
 }
+// const indexMyReviews = (req, res, next) => {
+//   Review.find({ _owner: req.user })
+//     .then(reviews => res.json({
+//       reviews: reviews.map((e) =>
+//         e.toJSON({ virtuals: true, user: req.user })),
+//     }))
+//     .catch(next);
+// };
 
 const show = (req, res) => {
   res.json({

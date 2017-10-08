@@ -14,6 +14,7 @@ module.exports = require('lib/wiring/routes')
 .get('/products', 'products#index')
 .post('/products', 'products#create')
 .post('/lists', 'lists#create')
+.get('/lists', 'lists#index')
 // users of the app have special requirements
 .post('/sign-up', 'users#signup')
 .post('/sign-in', 'users#signin')
