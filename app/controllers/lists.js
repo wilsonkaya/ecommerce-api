@@ -57,7 +57,7 @@ const update = (req, res, next) => {
 }
 
 const destroy = (req, res, next) => {
-  req.list.remove()
+  List.remove({_id: req.query.ID})
     .then(() => res.sendStatus(204))
     .catch(next)
 }
@@ -70,7 +70,7 @@ module.exports = controller({
   destroy
 }, { before: [
   { method: setUser, only: ['index', 'show'] },
-  { method: authenticate, except: ['index', 'show', 'create'] },
+  { method: authenticate, except: ['index', 'show', 'create', 'destroy'] },
   { method: setModel(List), only: ['show'] },
-  { method: setModel(List, { forUser: true }), only: ['update', 'destroy'] }
+  { method: setModel(List, { forUser: true }), only: ['update'] }
 ] })
